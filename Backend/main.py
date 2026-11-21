@@ -7,6 +7,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel,Field
 from algorithms.scheduler import HospitalScheduler,URGENCY_HANDICAP
 from storage import SqliteStore
+from pathlib import Path
+from fastapi.staticfiles import StaticFiles
 doctors=[
     {"doctor_id":1,"name":"Dr. Sharma","specializations":["Cardiology","General Medicine"]},
     {"doctor_id":2,"name":"Dr. Verma","specializations":["General Medicine"]},
@@ -58,3 +60,4 @@ def finish_treatment(doctor_id:int,body:Optional[FinishIn]=None):
 @app.post("/api/doctors/{doctor_id}/duty")
 def set_duty(doctor_id:int,body:DutyIn):
     return call(scheduler.set_doctor_duty,doctor_id,body.on_duty)
+app.mount("/",StaticFiles(directory=Path(__file__).resolve().parent.parent/"frontend"/"dist",html=True),name="ui")
