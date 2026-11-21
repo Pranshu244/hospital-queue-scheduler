@@ -26,10 +26,9 @@ export default function Navbar({ isOnline = true }) {
               to="/"
               end
               className={({ isActive }) =>
-                `px-3 py-2 rounded-lg text-sm font-semibold transition-colors flex items-center gap-1.5 ${
-                  isActive
-                    ? 'bg-sky-600 text-white shadow-sm'
-                    : 'text-slate-300 hover:text-white hover:bg-slate-800'
+                `px-3 py-2 rounded-lg text-sm font-semibold transition-colors flex items-center gap-1.5 ${isActive
+                  ? 'bg-sky-600 text-white shadow-sm'
+                  : 'text-slate-300 hover:text-white hover:bg-slate-800'
                 }`
               }
             >
