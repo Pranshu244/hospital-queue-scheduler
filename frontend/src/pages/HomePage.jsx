@@ -1,16 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ClipboardList, Stethoscope, ArrowRight, ShieldCheck, Cpu, RefreshCw } from 'lucide-react';
+import { ClipboardList, Stethoscope, ArrowRight, ShieldCheck } from 'lucide-react';
 
 export default function HomePage() {
   return (
     <div className="max-w-5xl mx-auto px-4 py-8 sm:py-12">
       {/* Hero Header */}
       <div className="text-center mb-10 sm:mb-14">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold bg-sky-100 text-sky-800 border border-sky-200 mb-4">
-          <Cpu className="w-3.5 h-3.5" />
-          <span>DAA Course Project • Priority Queue & Matching Algorithms</span>
-        </div>
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">
           Hospital OPD Queue Scheduler
         </h2>
@@ -77,8 +73,7 @@ export default function HomePage() {
               </div>
             </div>
             <p className="text-slate-600 text-base mb-6 leading-relaxed">
-              Station screen for physicians on mobile phone or PC. View currently assigned patient, finish
-              treatments, toggle duty, and inspect specialization queue.
+              Station screen for physicians. View currently assigned patient, finish treatments, toggle duty, and inspect specialization queue.
             </p>
             <div className="space-y-2.5 mb-8 text-sm text-slate-600">
               <div className="flex items-center gap-2">
@@ -88,10 +83,6 @@ export default function HomePage() {
               <div className="flex items-center gap-2">
                 <ShieldCheck className="w-4 h-4 text-teal-600 flex-shrink-0" />
                 <span>Graceful Off-Duty Handover</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-teal-600 flex-shrink-0" />
-                <span>Single-Column Phone Optimized</span>
               </div>
             </div>
           </div>
@@ -104,23 +95,6 @@ export default function HomePage() {
             <span>Open Doctor Station</span>
             <ArrowRight className="w-5 h-5" />
           </Link>
-        </div>
-      </div>
-
-      {/* Dual Window Mentor Viva Instructions */}
-      <div className="bg-slate-900 text-slate-200 rounded-2xl p-6 border border-slate-800 shadow-md">
-        <div className="flex items-start gap-3">
-          <RefreshCw className="w-6 h-6 text-sky-400 mt-0.5 flex-shrink-0" />
-          <div>
-            <h4 className="font-bold text-white text-base mb-1">
-              Dual-Screen Mentor Demonstration Guide
-            </h4>
-            <p className="text-sm text-slate-400 leading-relaxed">
-              Open <strong>Reception</strong> in one browser tab and <strong>Doctor</strong> in a side-by-side tab.
-              When a patient is registered or a treatment is finished, the backend algorithms match patients in real
-              time and synchronize both dashboards within 3 seconds.
-            </p>
-          </div>
         </div>
       </div>
     </div>

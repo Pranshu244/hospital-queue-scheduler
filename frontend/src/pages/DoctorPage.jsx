@@ -21,7 +21,6 @@ import {
   ClipboardList,
   AlertCircle,
   Sparkles,
-  Phone,
 } from 'lucide-react';
 
 const STORAGE_KEY = 'hospital_scheduler_selected_doctor_id';
@@ -230,10 +229,6 @@ export default function DoctorPage() {
                 Doctor Station
               </h2>
             </div>
-            <span className="text-xs font-semibold px-2.5 py-1 bg-slate-100 text-slate-600 rounded-full border border-slate-200 flex items-center gap-1">
-              <Phone className="w-3 h-3" />
-              <span>Mobile Ready</span>
-            </span>
           </div>
 
           {/* Doctor Selection Dropdown */}
@@ -250,12 +245,12 @@ export default function DoctorPage() {
             >
               {doctors.map((doc) => (
                 <option key={doc.doctor_id} value={doc.doctor_id}>
-                  {doc.name} (Specializations: {Array.isArray(doc.specializations) ? doc.specializations.join(', ') : doc.specializations})
+                  {doc.name} ({Array.isArray(doc.specializations) ? doc.specializations.join(', ') : doc.specializations})
                 </option>
               ))}
             </select>
             <p className="text-xs text-slate-500 mt-1">
-              Selection remembered in this browser. (Never hardcoded)
+              Selection remembered in this browser.
             </p>
           </div>
 
