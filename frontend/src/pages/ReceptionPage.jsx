@@ -301,10 +301,6 @@ export default function ReceptionPage() {
             </p>
           </div>
           <div className="flex items-center gap-2">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 border border-emerald-200">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              Polling 3s
-            </span>
             <button
               onClick={loadDashboardData}
               type="button"
@@ -423,7 +419,7 @@ export default function ReceptionPage() {
                       const cfg = getUrgencyConfig(u);
                       return (
                         <option key={u} value={u}>
-                          {cfg.label} ({u}) — {cfg.meaning}
+                          {cfg.label} — {cfg.meaning}
                         </option>
                       );
                     })}
@@ -506,7 +502,7 @@ export default function ReceptionPage() {
                     </span>
                   </h3>
                   <p className="text-xs text-slate-500 mt-0.5">
-                    Order determined by DAA Min-Heap Priority Algorithm with Starvation Ageing. (Never sorted in frontend)
+                    Order determined by priority with starvation ageing.
                   </p>
                 </div>
               </div>
@@ -759,7 +755,7 @@ export default function ReceptionPage() {
                   const cfg = getUrgencyConfig(u);
                   return (
                     <option key={u} value={u}>
-                      {cfg.label} ({u}) — {cfg.meaning}
+                      {cfg.label} — {cfg.meaning}
                     </option>
                   );
                 })}
