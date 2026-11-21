@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  button {
+    min-height: 44px;
+  }
+}
+
+/* Row change highlight animation for DAA algorithm viva demonstration */
+.row-changed {
+  animation: rowHighlightPulse 2.5s ease-out;
+}
+
+@keyframes rowHighlightPulse {
+  0% {
+    background-color: #fef08a; /* amber/yellow highlight */
+    box-shadow: inset 0 0 10px rgba(245, 158, 11, 0.4);
+  }
+  70% {
+    background-color: #fef9c3;
+  }
+  100% {
+    background-color: transparent;
+  }
+}
