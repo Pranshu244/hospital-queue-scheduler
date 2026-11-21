@@ -9,12 +9,16 @@ from algorithms.scheduler import HospitalScheduler,URGENCY_HANDICAP
 from storage import SqliteStore
 from pathlib import Path
 from fastapi.staticfiles import StaticFiles
+import sys
 doctors=[
     {"doctor_id":1,"name":"Dr. Sharma","specializations":["Cardiology","General Medicine"]},
     {"doctor_id":2,"name":"Dr. Verma","specializations":["General Medicine"]},
     {"doctor_id":3,"name":"Dr. Gupta","specializations":["Orthopedics"]}
 ]
-scheduler=HospitalScheduler(doctors,store=SqliteStore(os.environ.get("HOSPITAL_DB","hospital.db")))
+frozen=getattr(sys,"frozen",False)
+base=Path(sys._MEIPASS) if frozen else Path(__file__).resolve().parent.parent
+db_path=os.environ.get("HOSPITAL_DB",str(Path(sys.executable).parent/"hospital.db") if frozen else "hospital.db")
+scheduler=HospitalScheduler(doctors,store=SqliteStore(db_path))
 lock=threading.Lock()
 app=FastAPI(title="Hospital Patient Queue and Resource Scheduler")
 app.add_middleware(CORSMiddleware,allow_origins=["*"],allow_methods=["*"],allow_headers=["*"])
@@ -60,4 +64,4 @@ def finish_treatment(doctor_id:int,body:Optional[FinishIn]=None):
 @app.post("/api/doctors/{doctor_id}/duty")
 def set_duty(doctor_id:int,body:DutyIn):
     return call(scheduler.set_doctor_duty,doctor_id,body.on_duty)
-app.mount("/",StaticFiles(directory=Path(__file__).resolve().parent.parent/"frontend"/"dist",html=True),name="ui")
+app.mount("/",StaticFiles(directory=base/"frontend"/"dist",html=True),name="ui")

@@ -211,7 +211,6 @@ export default function DoctorPage() {
     <div className="min-h-screen bg-slate-50 flex flex-col">
       <Navbar isOnline={!isOffline} />
 
-      {/* Single-Column Phone-Responsive Layout */}
       <main className="flex-1 max-w-xl w-full mx-auto px-4 py-6 space-y-6">
         {/* Status / Reconnection Banner */}
         <StatusBanner
