@@ -31,13 +31,10 @@ PATIENT_FIELDS=["patient_id","name","age","complaint","urgency","required_specia
 
 class SqliteStore:
     def __init__(self,path="hospital.db"):
-        # One connection shared by all requests. The API lock in main.py already serialises every call.
         self.conn=sqlite3.connect(path,check_same_thread=False)
         self.conn.row_factory=sqlite3.Row
-        # The default rollback journal keeps the whole database in one file and is still crash-safe, which suits archiving.
         self.conn.executescript(SCHEMA)
     def seed_doctors(self,doctors):
-        # New doctors are inserted; existing ones keep their saved duty state but pick up any name or specialization change.
         with self.conn:
             for d in doctors:
                 self.conn.execute("INSERT OR IGNORE INTO doctors VALUES(?,?,?,?,?,?)",(d["doctor_id"],d["name"],json.dumps(d["specializations"]),int(d["on_duty"]),int(d["available"]),d["current_patient"]))
@@ -49,7 +46,6 @@ class SqliteStore:
         rows=self.conn.execute("SELECT * FROM patients ORDER BY patient_id").fetchall()
         return [{f:r[f] for f in PATIENT_FIELDS} for r in rows]
     def save(self,patients,doctors):
-        # One transaction: either every change from an action is stored, or none of them.
         with self.conn:
             for p in patients:
                 self.conn.execute("INSERT OR REPLACE INTO patients VALUES(%s)"%",".join("?"*len(PATIENT_FIELDS)),[p[f] for f in PATIENT_FIELDS])
