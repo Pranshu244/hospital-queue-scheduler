@@ -26,7 +26,7 @@ You need Python 3.10 or newer.
  
 ```bash
 cd Backend
-pip install -r requirements.txt
+pip install -r backend_requirements.txt
 python run.py
 ```
  
@@ -53,7 +53,7 @@ Backend/
   main.py                  FastAPI routes and validation
   storage.py               SQLite persistence
   run.py                   launcher (starts the server, opens the browser)
-  backend_requirements.txt         Python libraries
+  backend_requirements.txt Python libraries
 frontend/
   src/
     pages/                 Home, Reception and Doctor screens
@@ -64,8 +64,8 @@ frontend/
   dist/                    built frontend, served by the backend
   public/                  favicon
   package.json             frontend tools (installed with npm install)
-  frontend_requirements.txt         list of frontend tools
-    index.html, vite.config.js, tailwind.config.js, postcss.config.js, package-lock.json
+  frontend_requirements.txt  list of frontend tools
+  index.html, vite.config.js, tailwind.config.js, postcss.config.js, package-lock.json
 prototype images/          screenshots of the screens
 ```
  
